@@ -103,7 +103,7 @@
             self.image = image;
         }
     }
-    if ([(id)self.delegate respondsToSelector:@selector(didRenderImage)]) {
+    if ([(id)self.delegate respondsToSelector:@selector(didRenderImage:)]) {
         [self.delegate didRenderImage:self];
     }
     

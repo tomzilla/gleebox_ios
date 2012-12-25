@@ -67,6 +67,8 @@
 		E2D8D6CC16894A0E00EB5BB4 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6CB16894A0E00EB5BB4 /* arrow.png */; };
 		E2D8D6D516895B8E00EB5BB4 /* GBNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */; };
 		E2D8D6D616895B8E00EB5BB4 /* GBNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */; };
+		E2D8D6D9168A333A00EB5BB4 /* GBCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6D8168A333A00EB5BB4 /* GBCommentView.m */; };
+		E2D8D6DC168A4B5300EB5BB4 /* GBContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +174,10 @@
 		E2D8D6D216895B8D00EB5BB4 /* GBNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBNavigationViewController.h; sourceTree = "<group>"; };
 		E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBNavigationViewController.m; sourceTree = "<group>"; };
 		E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GBNavigationViewController.xib; sourceTree = "<group>"; };
+		E2D8D6D7168A333A00EB5BB4 /* GBCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBCommentView.h; sourceTree = "<group>"; };
+		E2D8D6D8168A333A00EB5BB4 /* GBCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCommentView.m; sourceTree = "<group>"; };
+		E2D8D6DA168A4B5300EB5BB4 /* GBContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBContainerView.h; sourceTree = "<group>"; };
+		E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBContainerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,11 +420,15 @@
 			children = (
 				E2D8D6BB1688171800EB5BB4 /* GBURLImageView.h */,
 				E2D8D6BC1688171800EB5BB4 /* GBURLImageView.m */,
+				E2D8D6D7168A333A00EB5BB4 /* GBCommentView.h */,
+				E2D8D6D8168A333A00EB5BB4 /* GBCommentView.m */,
 				E2D8D6C6168948DA00EB5BB4 /* GBPullToRefreshScrollView.h */,
+				E2D8D6C7168948DA00EB5BB4 /* GBPullToRefreshScrollView.m */,
 				E2D8D6D216895B8D00EB5BB4 /* GBNavigationViewController.h */,
 				E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */,
 				E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */,
-				E2D8D6C7168948DA00EB5BB4 /* GBPullToRefreshScrollView.m */,
+				E2D8D6DA168A4B5300EB5BB4 /* GBContainerView.h */,
+				E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -570,6 +580,8 @@
 				E2D8D6C41688EBBC00EB5BB4 /* GBItemDetailedViewController.m in Sources */,
 				E2D8D6C8168948DA00EB5BB4 /* GBPullToRefreshScrollView.m in Sources */,
 				E2D8D6D516895B8E00EB5BB4 /* GBNavigationViewController.m in Sources */,
+				E2D8D6D9168A333A00EB5BB4 /* GBCommentView.m in Sources */,
+				E2D8D6DC168A4B5300EB5BB4 /* GBContainerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
