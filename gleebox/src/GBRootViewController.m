@@ -11,6 +11,7 @@
 #import "GBShareViewController.h"
 #import "GBFavsViewController.h"
 #import "GBBrowseViewController.h"
+#import "GBNavigationViewController.h"
 
 @interface GBRootViewController () <UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *containerView;
@@ -43,11 +44,12 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     self.tabsController = [[UITabBarController alloc] init];
-    UIViewController *tab1 = [[GBBrowseViewController alloc] init];
+    GBBrowseViewController *browse = [[GBBrowseViewController alloc] init];
+    UIViewController *tab1 = [[GBNavigationViewController alloc] initWithRootViewController:browse];
+    browse.navigationController = (UINavigationController *)tab1;
     tab1.title = @"Browse";
     UIViewController *tab2 = [[GBShareViewController alloc] init];
     UIViewController *tab3 = [[GBFavsViewController alloc] init];
-
     self.tabsController.viewControllers = [NSArray arrayWithObjects:tab1, tab2, tab3, nil];
     [self presentViewController:self.tabsController animated:NO completion:nil];
 }

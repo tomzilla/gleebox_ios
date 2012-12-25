@@ -10,8 +10,10 @@
 #import "GBItemService.h"
 
 @interface GBItemService()
+@property (nonatomic, strong) NSMutableDictionary *cacheDict;
 @end
 static GBItemService * _instance;
+
 @implementation GBItemService
 + (GBItemService *)singleton {
     if (_instance == nil) {
@@ -28,5 +30,13 @@ static GBItemService * _instance;
             
         }
     }];
+}
+
+- (void)cache:(GBItem *)item {
+    [self.cacheDict setObject:item forKey:[NSNumber numberWithInteger:item.id]];
+}
+
+- (GBItem *)get:(NSInteger)id{
+    return [self.cacheDict objectForKey:[NSNumber numberWithInteger:id]];
 }
 @end

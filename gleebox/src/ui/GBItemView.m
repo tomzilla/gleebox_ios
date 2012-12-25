@@ -10,7 +10,6 @@
 #import "GBURLImageView.h"
 
 @interface GBItemView() <NSURLConnectionDelegate>
-@property (nonatomic, strong) GBItem *item;
 @property (nonatomic, strong) UIImageView *thumbnail;
 @end
 
@@ -38,7 +37,10 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+    if ([(id)self.delegate respondsToSelector:@selector(itemViewDidPress:)]) {
+        [self.delegate itemViewDidPress:self];
+    }
+    NSLog(@"%d", self.item.id);
 }
                             
 

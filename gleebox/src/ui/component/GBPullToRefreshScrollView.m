@@ -20,7 +20,6 @@
     isDragging = YES;
 }
 
-
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     //if (isLoading) return;
     isDragging = NO;
@@ -36,6 +35,8 @@
     // Show the header
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+
     self.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
     refreshLabel.text = self.textLoading;
     refreshArrow.hidden = YES;
@@ -52,6 +53,7 @@
     // Hide the header
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDelegate:self];
+    [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];
     [UIView setAnimationDidStopSelector:@selector(stopLoadingComplete:finished:context:)];
     self.contentInset = UIEdgeInsetsZero;

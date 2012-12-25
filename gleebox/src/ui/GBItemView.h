@@ -8,7 +8,14 @@
 
 #import "GBView.h"
 #import "GBItem.h"
+@class GBItemView;
 
+@protocol GBItemViewDelegate
+@optional
+- (void)itemViewDidPress:(GBItemView *)itemView;
+@end
 @interface GBItemView : GBView
+@property (nonatomic, strong) GBItem *item;
+@property (nonatomic, weak) id<GBItemViewDelegate> delegate;
 - (id)initWithItem:(GBItem *)item;
 @end

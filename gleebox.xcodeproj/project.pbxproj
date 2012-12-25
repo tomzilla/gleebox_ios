@@ -65,6 +65,8 @@
 		E2D8D6C51688EBBC00EB5BB4 /* GBItemDetailedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6C31688EBBC00EB5BB4 /* GBItemDetailedViewController.xib */; };
 		E2D8D6C8168948DA00EB5BB4 /* GBPullToRefreshScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6C7168948DA00EB5BB4 /* GBPullToRefreshScrollView.m */; };
 		E2D8D6CC16894A0E00EB5BB4 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6CB16894A0E00EB5BB4 /* arrow.png */; };
+		E2D8D6D516895B8E00EB5BB4 /* GBNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */; };
+		E2D8D6D616895B8E00EB5BB4 /* GBNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +169,9 @@
 		E2D8D6C6168948DA00EB5BB4 /* GBPullToRefreshScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPullToRefreshScrollView.h; sourceTree = "<group>"; };
 		E2D8D6C7168948DA00EB5BB4 /* GBPullToRefreshScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPullToRefreshScrollView.m; sourceTree = "<group>"; };
 		E2D8D6CB16894A0E00EB5BB4 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		E2D8D6D216895B8D00EB5BB4 /* GBNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBNavigationViewController.h; sourceTree = "<group>"; };
+		E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBNavigationViewController.m; sourceTree = "<group>"; };
+		E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GBNavigationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +415,9 @@
 				E2D8D6BB1688171800EB5BB4 /* GBURLImageView.h */,
 				E2D8D6BC1688171800EB5BB4 /* GBURLImageView.m */,
 				E2D8D6C6168948DA00EB5BB4 /* GBPullToRefreshScrollView.h */,
+				E2D8D6D216895B8D00EB5BB4 /* GBNavigationViewController.h */,
+				E2D8D6D316895B8E00EB5BB4 /* GBNavigationViewController.m */,
+				E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */,
 				E2D8D6C7168948DA00EB5BB4 /* GBPullToRefreshScrollView.m */,
 			);
 			path = component;
@@ -500,6 +508,7 @@
 				E2D8D6A71687D61700EB5BB4 /* GBFavsViewController.xib in Resources */,
 				E2D8D6C51688EBBC00EB5BB4 /* GBItemDetailedViewController.xib in Resources */,
 				E2D8D6CC16894A0E00EB5BB4 /* arrow.png in Resources */,
+				E2D8D6D616895B8E00EB5BB4 /* GBNavigationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +569,7 @@
 				E2D8D6C016881E8400EB5BB4 /* GBItemService.m in Sources */,
 				E2D8D6C41688EBBC00EB5BB4 /* GBItemDetailedViewController.m in Sources */,
 				E2D8D6C8168948DA00EB5BB4 /* GBPullToRefreshScrollView.m in Sources */,
+				E2D8D6D516895B8E00EB5BB4 /* GBNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

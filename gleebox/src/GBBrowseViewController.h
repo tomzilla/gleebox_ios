@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GBBrowseViewController : UIViewController
-
+@property (nonatomic, weak) UINavigationController *navigationController;
 @end

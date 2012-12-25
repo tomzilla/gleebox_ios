@@ -10,8 +10,9 @@
 #import "GBItemService.h"
 #import "GBItemView.h"
 #import "GBPullToRefreshScrollView.h"
+#import "GBItemDetailedViewController.h"
 
-@interface GBBrowseViewController () <UIScrollViewDelegate, GBPullToRefreshScrollViewDelegate>
+@interface GBBrowseViewController () <UIScrollViewDelegate, GBPullToRefreshScrollViewDelegate, GBItemViewDelegate>
 @property (strong, nonatomic) IBOutlet GBPullToRefreshScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *itemViews;
 @end
@@ -32,16 +33,17 @@ static NSInteger offset;
     [super viewDidLoad];
     self.scrollView.delegate1 = self;
     self.itemViews = [NSMutableArray array];
+    [self loadItems];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)refreshScrollView {
     offset = 0;
+
     [self loadItems];
 }
 
--(void)stopLoading
-{
+-(void)stopLoading {
 	[self.scrollView stopLoading];
 }
 
@@ -53,8 +55,13 @@ static NSInteger offset;
     [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.frame.size.height) animated:YES];
     [[GBItemService singleton] getHomeItems:offset callback:^(NSArray *items) {
         [indicator removeFromSuperview];
+        [self.itemViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [(UIView *)obj removeFromSuperview];
+        }];
+        [self.itemViews removeAllObjects];
+        
         [self renderItems:items];
-        [self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];
+        [self stopLoading];
     }];
 }
 
@@ -66,6 +73,7 @@ static NSInteger offset;
         currentY = 105.0 * (offset / 3) + 5.0;
         GBItem *it = [[GBItem alloc]initWithData:obj];
         GBItemView *item = [[GBItemView alloc] initWithItem:it];
+        item.delegate = self;
         [self.itemViews addObject:item];
         item.frame = CGRectMake(currentX, currentY, item.frame.size.width, item.frame.size.height);
         [self.scrollView addSubview:item];
@@ -76,10 +84,12 @@ static NSInteger offset;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadItems];
 }
 
-
+- (void)itemViewDidPress:(GBItemView *)itemView {
+    GBItemDetailedViewController *detailedView = [[GBItemDetailedViewController alloc] initWithItem:itemView.item];
+    [self.navigationController pushViewController:detailedView animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

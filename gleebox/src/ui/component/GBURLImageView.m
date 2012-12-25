@@ -8,6 +8,7 @@
 
 #import "GBURLImageView.h"
 @interface GBURLImageView () <NSURLConnectionDelegate>
+@property (nonatomic, assign) BOOL noCrop;
 @property (nonatomic, retain) NSMutableData *activeDownload;
 @property (nonatomic, retain) NSURLConnection *imageConnection;
 @end
@@ -36,6 +37,16 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame url:(NSString *)url noCrop:(BOOL)noCrop {
+    self = [self initWithFrame:frame url:url];
+    if (self) {
+        self.noCrop = noCrop;
+        
+    }
+    return self;
+}
+
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.activeDownload appendData:data];
@@ -54,29 +65,46 @@
 {
     // Set appIcon and clear temporary data/image
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
-    
-    if (image.size.width != self.frame.size.width || image.size.height != self.frame.size.height)
-    {
-        CGSize itemSize = self.frame.size;
-        float cropW = image.size.width;
-        float cropH = image.size.height;
-        if (cropW > cropH) {
-            cropW = cropH;
-        } else {
-            cropH = cropW;
-        }
-        CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, cropW, cropH));
-
-        UIGraphicsBeginImageContext(itemSize);
-        UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGSize itemSize = self.frame.size;
+    if (self.noCrop) {
+        float h = self.frame.size.width * image.size.height / image.size.width;
+        CGRect frame = self.frame;
+        frame.size.height = h;
+        self.frame = frame;
+        itemSize = frame.size;
+        UIGraphicsBeginImageContext(self.frame.size);
         CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-        [cropped drawInRect:imageRect];
+        [image drawInRect:imageRect];
         self.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+    } else {
+        if (image.size.width != self.frame.size.width || image.size.height != self.frame.size.height)
+        {
+            float cropW = image.size.width;
+            float cropH = image.size.height;
+            if (cropW > cropH) {
+                cropW = cropH;
+            } else {
+                cropH = cropW;
+            }
+            itemSize = self.frame.size;
+
+            CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(0, 0, cropW, cropH));
+            
+            UIGraphicsBeginImageContext(itemSize);
+            UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+            CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+            [cropped drawInRect:imageRect];
+            self.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
+        else
+        {
+            self.image = image;
+        }
     }
-    else
-    {
-        self.image = image;
+    if ([(id)self.delegate respondsToSelector:@selector(didRenderImage)]) {
+        [self.delegate didRenderImage:self];
     }
     
     self.activeDownload = nil;

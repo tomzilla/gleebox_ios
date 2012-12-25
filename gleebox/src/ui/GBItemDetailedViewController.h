@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GBItem.h"
 @interface GBItemDetailedViewController : UIViewController
-
+- (id)initWithItem:(GBItem *)item;
 @end

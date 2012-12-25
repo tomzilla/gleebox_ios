@@ -7,6 +7,7 @@
 //
 
 #import "GBItem.h"
+#import "GBItemService.h"
 
 @implementation GBItem
 - (id)initWithData:(NSDictionary *)data {
@@ -17,7 +18,7 @@
             self.pictures = [data objectForKey:@"pictures"];
         }
         self.id = [[data valueForKey:@"id"] integerValue];
-        
+        [[GBItemService singleton] cache:self];
     }
     return self;
 }
