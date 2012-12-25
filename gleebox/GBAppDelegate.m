@@ -27,6 +27,8 @@ NSString *const FBSessionStateChangedNotification =
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     GBRootViewController *rootViewController = [[GBRootViewController alloc] initWithNibName:nil bundle:nil];
+    CGRect windowFrame = self.window.frame;
+    rootViewController.view.frame = windowFrame;
     [self.window setRootViewController:rootViewController];
     return YES;
 }

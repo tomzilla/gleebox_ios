@@ -11,5 +11,5 @@
 @interface GBAPI : NSObject
 + (void)auth:(NSString *)authToken callback:(void (^)(void))block;
 + (void)fbLogin:(NSString *)fbToken callback:(void (^)(void))block;
-
++ (void)call:(NSString *)api data:(NSDictionary *)data callback:(void (^)(NSDictionary*))block;
 @end
