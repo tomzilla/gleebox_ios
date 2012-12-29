@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface GBUserService : NSObject
-
-+ (GBUserService *)singleton;
-@end
-
 @interface GBUser : NSObject
 @property (strong, nonatomic) NSString *fbid;
 @property (strong, nonatomic) NSString *userId;
 @property (strong, nonatomic) NSString *authToken;
 @end
+
+@interface GBUserService : NSObject
+@property (nonatomic, strong) GBUser *user;
+
++ (GBUserService *)singleton;
+@end
+

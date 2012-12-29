@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E28CB6E0168E6CAD004783DF /* GBCommentBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E28CB6DF168E6CAD004783DF /* GBCommentBox.m */; };
 		E29DCD4016818FAE00A6A900 /* GBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29DCD3E16818FAE00A6A900 /* GBLoginViewController.m */; };
 		E29DCD4116818FAE00A6A900 /* GBLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29DCD3F16818FAE00A6A900 /* GBLoginViewController.xib */; };
 		E29DCD451681908B00A6A900 /* facebook-connect-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E29DCD441681908B00A6A900 /* facebook-connect-button.png */; };
@@ -69,6 +70,9 @@
 		E2D8D6D616895B8E00EB5BB4 /* GBNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */; };
 		E2D8D6D9168A333A00EB5BB4 /* GBCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6D8168A333A00EB5BB4 /* GBCommentView.m */; };
 		E2D8D6DC168A4B5300EB5BB4 /* GBContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */; };
+		E2D8D6DF168AB30100EB5BB4 /* GBCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6DE168AB30100EB5BB4 /* GBCameraController.m */; };
+		E2D8D6E2168C0C4300EB5BB4 /* GBLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D8D6E1168C0C4300EB5BB4 /* GBLocationManager.m */; };
+		E2D8D6E4168C0D0F00EB5BB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D8D6E3168C0D0E00EB5BB4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E28CB6DE168E6CAD004783DF /* GBCommentBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBCommentBox.h; sourceTree = "<group>"; };
+		E28CB6DF168E6CAD004783DF /* GBCommentBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCommentBox.m; sourceTree = "<group>"; };
 		E29DCD3D16818FAE00A6A900 /* GBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBLoginViewController.h; path = src/GBLoginViewController.h; sourceTree = "<group>"; };
 		E29DCD3E16818FAE00A6A900 /* GBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBLoginViewController.m; path = src/GBLoginViewController.m; sourceTree = "<group>"; };
 		E29DCD3F16818FAE00A6A900 /* GBLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GBLoginViewController.xib; path = src/GBLoginViewController.xib; sourceTree = "<group>"; };
@@ -178,6 +184,11 @@
 		E2D8D6D8168A333A00EB5BB4 /* GBCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCommentView.m; sourceTree = "<group>"; };
 		E2D8D6DA168A4B5300EB5BB4 /* GBContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBContainerView.h; sourceTree = "<group>"; };
 		E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBContainerView.m; sourceTree = "<group>"; };
+		E2D8D6DD168AB30000EB5BB4 /* GBCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBCameraController.h; sourceTree = "<group>"; };
+		E2D8D6DE168AB30100EB5BB4 /* GBCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCameraController.m; sourceTree = "<group>"; };
+		E2D8D6E0168C0C4300EB5BB4 /* GBLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBLocationManager.h; sourceTree = "<group>"; };
+		E2D8D6E1168C0C4300EB5BB4 /* GBLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBLocationManager.m; sourceTree = "<group>"; };
+		E2D8D6E3168C0D0E00EB5BB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2D8D6E4168C0D0F00EB5BB4 /* CoreLocation.framework in Frameworks */,
 				E29DCD821681A07600A6A900 /* libsqlite3.0.dylib in Frameworks */,
 				E29DCD7E1681A02300A6A900 /* Accounts.framework in Frameworks */,
 				E29DCD7F1681A02300A6A900 /* AdSupport.framework in Frameworks */,
@@ -324,6 +336,7 @@
 		E2D198EB16817E5C00870E45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E2D8D6E3168C0D0E00EB5BB4 /* CoreLocation.framework */,
 				E29DCD8E1681A58400A6A900 /* FacebookSDKResources.bundle */,
 				E29DCD8C1681A57100A6A900 /* FacebookSDK.framework */,
 				E29DCD811681A07600A6A900 /* libsqlite3.0.dylib */,
@@ -400,6 +413,8 @@
 				E2D8D6C11688EBBB00EB5BB4 /* GBItemDetailedViewController.h */,
 				E2D8D6C21688EBBB00EB5BB4 /* GBItemDetailedViewController.m */,
 				E2D8D6C31688EBBC00EB5BB4 /* GBItemDetailedViewController.xib */,
+				E2D8D6DD168AB30000EB5BB4 /* GBCameraController.h */,
+				E2D8D6DE168AB30100EB5BB4 /* GBCameraController.m */,
 			);
 			name = ui;
 			path = src/ui;
@@ -410,6 +425,8 @@
 			children = (
 				E2D8D6B01687DA2A00EB5BB4 /* GBItem.h */,
 				E2D8D6B11687DA2A00EB5BB4 /* GBItem.m */,
+				E2D8D6E0168C0C4300EB5BB4 /* GBLocationManager.h */,
+				E2D8D6E1168C0C4300EB5BB4 /* GBLocationManager.m */,
 			);
 			name = data;
 			path = src/data;
@@ -429,6 +446,8 @@
 				E2D8D6D416895B8E00EB5BB4 /* GBNavigationViewController.xib */,
 				E2D8D6DA168A4B5300EB5BB4 /* GBContainerView.h */,
 				E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */,
+				E28CB6DE168E6CAD004783DF /* GBCommentBox.h */,
+				E28CB6DF168E6CAD004783DF /* GBCommentBox.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -582,6 +601,9 @@
 				E2D8D6D516895B8E00EB5BB4 /* GBNavigationViewController.m in Sources */,
 				E2D8D6D9168A333A00EB5BB4 /* GBCommentView.m in Sources */,
 				E2D8D6DC168A4B5300EB5BB4 /* GBContainerView.m in Sources */,
+				E2D8D6DF168AB30100EB5BB4 /* GBCameraController.m in Sources */,
+				E2D8D6E2168C0C4300EB5BB4 /* GBLocationManager.m in Sources */,
+				E28CB6E0168E6CAD004783DF /* GBCommentBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +700,7 @@
 		E2D1992216817E5D00870E45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Documents/FacebookSDK\"",
@@ -694,6 +717,7 @@
 		E2D1992316817E5D00870E45 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Documents/FacebookSDK\"",

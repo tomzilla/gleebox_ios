@@ -7,6 +7,7 @@
 //
 
 #import "GBAPI.h"
+#import "GBLocationManager.h"
 #import "GBItemService.h"
 
 @interface GBItemService()
@@ -23,12 +24,19 @@ static GBItemService * _instance;
 }
 
 - (void)getHomeItems:(NSInteger)offset callback:(void (^)(NSArray *))callback {
-    [GBAPI call:@"item.get_home_items" data:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",offset] forKey:@"offset"] callback:^(NSDictionary * data) {
+    [[GBLocationManager singleton] getLocation:^(CLLocation *location) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+        [dict setObject:[NSString stringWithFormat:@"%f", location.coordinate.longitude] forKey:@"longitude"];
+        [dict setObject:[NSString stringWithFormat:@"%f", location.coordinate.latitude] forKey:@"latitude"];
+        
+        [GBAPI call:@"item.get_home_items" data:dict callback:^(NSDictionary * data) {
         if (data && [data objectForKey:@"response"] && [[data objectForKey:@"response"] isKindOfClass:[NSDictionary class]]) {
             NSDictionary *response = [data objectForKey:@"response"];
             callback([response objectForKey:@"items"]);
             
         }
+    }];
     }];
 }
 

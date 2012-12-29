@@ -8,7 +8,6 @@
 
 #import "GBUserService.h"
 @interface GBUserService ()
-@property (nonatomic, strong) GBUser *user;
 
 
 @end

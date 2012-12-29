@@ -48,7 +48,8 @@
     UIViewController *tab1 = [[GBNavigationViewController alloc] initWithRootViewController:browse];
     browse.navigationController = (UINavigationController *)tab1;
     tab1.title = @"Browse";
-    UIViewController *tab2 = [[GBShareViewController alloc] init];
+    UIViewController *tab2 = [[GBShareViewController alloc] initWithNibName:nil bundle:nil];
+    
     UIViewController *tab3 = [[GBFavsViewController alloc] init];
     self.tabsController.viewControllers = [NSArray arrayWithObjects:tab1, tab2, tab3, nil];
     [self presentViewController:self.tabsController animated:NO completion:nil];
