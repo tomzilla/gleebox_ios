@@ -8,6 +8,8 @@
 
 #import "GBAppDelegate.h"
 #import "GBRootViewController.h"
+#import "GBLoginViewController.h"
+#import "GBUserService.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 
@@ -26,9 +28,9 @@ NSString *const FBSessionStateChangedNotification =
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    GBRootViewController *rootViewController = [[GBRootViewController alloc] initWithNibName:nil bundle:nil];
-    CGRect windowFrame = self.window.frame;
-    rootViewController.view.frame = windowFrame;
+    [GBUserService singleton].loginDelegate = self;
+
+    GBLoginViewController *rootViewController = [[GBLoginViewController alloc] initWithNibName:nil bundle:nil];
     [self.window setRootViewController:rootViewController];
     return YES;
 }
@@ -188,6 +190,7 @@ NSString *const FBSessionStateChangedNotification =
             if (!error) {
                 // We have a valid session
                 NSLog(@"User session found");
+                [[GBUserService singleton] fbLogin:session.accessToken];
             }
             break;
         case FBSessionStateClosed:
@@ -221,4 +224,13 @@ NSString *const FBSessionStateChangedNotification =
     return [FBSession.activeSession handleOpenURL:url];
 }
 
+- (void)didLogin:(GBUser *)user {
+    GBRootViewController *rootViewController = [[GBRootViewController alloc] initWithNibName:nil bundle:nil];
+    [self.window setRootViewController:rootViewController];
+}
+
+- (void)didLogout {
+    GBLoginViewController *rootViewController = [[GBLoginViewController alloc] initWithNibName:nil bundle:nil];
+    [self.window setRootViewController:rootViewController];
+}
 @end

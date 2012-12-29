@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 tom. All rights reserved.
 //
 
+#import "GBAPI.h"
 #import "GBUserService.h"
 @interface GBUserService ()
 
@@ -33,6 +34,18 @@ static GBUserService* _instance;
         
     }
     return self;
+}
+- (void)fbLogin:(NSString *)accessToken {
+    [GBAPI call:@"account.fb_login" data:[NSDictionary dictionaryWithObject:accessToken forKey:@"fb_token"] callback:^(NSDictionary *data) {
+        NSDictionary *userData = [[data objectForKey:@"response"] objectForKey:@"user"];
+        self.user = [[GBUser alloc] init];
+        self.user.fbid = [userData objectForKey:@"fbid"];
+        self.user.userId = [userData objectForKey:@"id"];
+        self.user.authToken = [userData objectForKey:@"token"];
+        if ([(id)self.loginDelegate respondsToSelector:@selector(didLogin:)]) {
+            [self.loginDelegate didLogin:self.user];
+        }
+    }];
 }
 
 - (void)loadFromDisk {

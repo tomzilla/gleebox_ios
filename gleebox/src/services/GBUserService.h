@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBLoginDelegate.h"
+
 @interface GBUser : NSObject
 @property (strong, nonatomic) NSString *fbid;
 @property (strong, nonatomic) NSString *userId;
@@ -15,7 +17,9 @@
 
 @interface GBUserService : NSObject
 @property (nonatomic, strong) GBUser *user;
+@property (nonatomic, weak) id<GBLoginDelegate> loginDelegate;
 
 + (GBUserService *)singleton;
+- (void)fbLogin:(NSString *)accessToken;
 @end
 

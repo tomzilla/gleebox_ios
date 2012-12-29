@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GBLoginDelegate.h"
 
-@interface GBAppDelegate : UIResponder <UIApplicationDelegate>
+@interface GBAppDelegate : UIResponder <UIApplicationDelegate, GBLoginDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

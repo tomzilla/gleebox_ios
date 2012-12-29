@@ -88,6 +88,7 @@
 /* Begin PBXFileReference section */
 		E28CB6DE168E6CAD004783DF /* GBCommentBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBCommentBox.h; sourceTree = "<group>"; };
 		E28CB6DF168E6CAD004783DF /* GBCommentBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCommentBox.m; sourceTree = "<group>"; };
+		E28CB6E2168EC355004783DF /* GBLoginDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBLoginDelegate.h; sourceTree = "<group>"; };
 		E29DCD3D16818FAE00A6A900 /* GBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBLoginViewController.h; path = src/GBLoginViewController.h; sourceTree = "<group>"; };
 		E29DCD3E16818FAE00A6A900 /* GBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBLoginViewController.m; path = src/GBLoginViewController.m; sourceTree = "<group>"; };
 		E29DCD3F16818FAE00A6A900 /* GBLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GBLoginViewController.xib; path = src/GBLoginViewController.xib; sourceTree = "<group>"; };
@@ -227,9 +228,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E28CB6E1168EC341004783DF /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E28CB6E2168EC355004783DF /* GBLoginDelegate.h */,
+			);
+			name = protocols;
+			path = src/protocols;
+			sourceTree = "<group>";
+		};
 		E29DCD4216818FBE00A6A900 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E28CB6E1168EC341004783DF /* protocols */,
 				E2D8D6AF1687DA1C00EB5BB4 /* data */,
 				E2D8D6A81687D72A00EB5BB4 /* ui */,
 				E29DCD4A1681991A00A6A900 /* external */,
