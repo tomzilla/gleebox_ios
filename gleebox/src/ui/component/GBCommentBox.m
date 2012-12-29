@@ -10,6 +10,7 @@
 #import "GBURLImageView.h"
 #import "GBUserService.h"
 #import "GBAPI.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GBCommentBox () <UITextFieldDelegate>
 @property (nonatomic, strong) GBItem *item;
@@ -44,7 +45,7 @@
             [data setObject:self.commentField.text forKey:@"comment"];
             [GBAPI call:@"comment.create" data:data callback:^(NSDictionary *data) {
                 if ([((id)self.delegate) respondsToSelector:@selector(commentBoxCommentAdded:)]) {
-                    [self.delegate commentBoxCommentAdded:self.commentField.text];
+                    [self.delegate commentBoxCommentAdded:[[data objectForKey:@"response"] objectForKey:@"comment"]];
                 }
             }];
         }

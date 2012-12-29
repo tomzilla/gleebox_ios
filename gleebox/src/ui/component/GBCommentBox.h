@@ -20,5 +20,5 @@
 
 @protocol GBCommentBoxDelegate
 @optional
-- (void)commentBoxCommentAdded:(NSString *)comment;
+- (void)commentBoxCommentAdded:(NSDictionary *)comment;
 @end

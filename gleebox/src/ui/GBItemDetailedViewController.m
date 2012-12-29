@@ -11,12 +11,15 @@
 #import "GBAPI.h"
 #import "GBCommentView.h"
 #import "GBContainerView.h"
+#import "GBCommentBox.h"
+#import "GBUserService.h"
 
-@interface GBItemDetailedViewController () <GBUULImageViewDelegate>
+@interface GBItemDetailedViewController () <GBUULImageViewDelegate, GBCommentBoxDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) GBItem *item;
 @property (strong, nonatomic) GBContainerView *bottomContainer;
 @property (strong, nonatomic) GBURLImageView *imageView;
+@property (strong, nonatomic) GBCommentBox *commentBox;
 @end
 
 @implementation GBItemDetailedViewController
@@ -50,25 +53,54 @@
     [self.scrollView addSubview:self.imageView];
     // Do any additional setup after loading the view from its nib.
     [GBAPI call:@"item.get_comments" data:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:self.item.id] forKey:@"item_id"] callback:^(NSDictionary *data) {
+        __block float currentY = 0;
+
         if (data && [data objectForKey:@"response"]) {
             
             if ([[data objectForKey:@"response"] isKindOfClass:[NSArray class]]) {
                 NSArray *comments = (NSArray *)[data objectForKey:@"response"];
-                __block float currentY = 0;
                 [comments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     
                     GBCommentView *commentView = [[GBCommentView alloc] initWithFrame:CGRectMake(0, currentY, 320.0, 25) data:obj];
                     currentY += commentView.frame.size.height;
                     [self.bottomContainer addSubview:commentView];
                 }];
-                [self.bottomContainer sizeToFit];
-                self.scrollView.contentSize = CGSizeMake(320.0, self.imageView.frame.size.height + self.bottomContainer.frame.size.height);
-                
             }
         }
+        self.commentBox = [[GBCommentBox alloc] initWithFrame:CGRectMake(0, currentY, 320.0, 25) item:self.item];
+        self.commentBox.delegate = self;
+        [self.bottomContainer addSubview:self.commentBox];
+        [self.bottomContainer sizeToFit];
+        self.scrollView.contentSize = CGSizeMake(320.0, self.imageView.frame.size.height + self.bottomContainer.frame.size.height);
+        
+
     }];
     
 }
+
+- (void)commentBoxCommentAdded:(NSDictionary *)comment {
+    float currentY = self.commentBox.frame.origin.y + self.commentBox.frame.size.height;
+    NSDictionary *user = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [GBUserService singleton].user.fbid, @"fbid",
+                          [GBUserService singleton].user.userId, @"id", nil];
+    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:comment];
+    [data setObject:user forKey:@"user"];
+    GBCommentView *commentView = [[GBCommentView alloc] initWithFrame:CGRectMake(0, currentY, 320.0, 25) data:data];
+    currentY += commentView.frame.size.height;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn)
+                     animations:^{
+                         CGRect frame = self.commentBox.frame;
+                         frame.origin.y += 25;
+                         self.commentBox.frame = frame;
+                        }
+                     completion:^(BOOL finished) {
+                         [self.bottomContainer addSubview:commentView];
+                     }];
+
+}
+
 - (void)didRenderImage:(GBURLImageView *)image {
     CGRect frame = self.bottomContainer.frame;
     float y = self.imageView.frame.size.height + self.imageView.frame.origin.y;
