@@ -8,6 +8,7 @@
 
 #import "GBItem.h"
 #import "GBItemService.h"
+#import "GBUserService.h"
 
 @implementation GBItem
 - (id)initWithData:(NSDictionary *)data {
@@ -17,7 +18,8 @@
         if ([data objectForKey:@"pictures"] && [(NSArray *)[data objectForKey:@"pictures"] count]) {
             self.pictures = [data objectForKey:@"pictures"];
         }
-        self.id = [[data valueForKey:@"id"] integerValue];
+        self.id = [NSNumber numberWithInteger:[[data valueForKey:@"id"] integerValue]];
+        self.fav = [[GBUserService singleton].favs indexOfObject:self.id] != NSNotFound;
         [[GBItemService singleton] cache:self];
     }
     return self;

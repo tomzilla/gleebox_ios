@@ -18,6 +18,7 @@
 @interface GBUserService : NSObject
 @property (nonatomic, strong) GBUser *user;
 @property (nonatomic, weak) id<GBLoginDelegate> loginDelegate;
+@property (nonatomic, strong) NSMutableArray *favs;
 
 + (GBUserService *)singleton;
 - (void)fbLogin:(NSString *)accessToken;

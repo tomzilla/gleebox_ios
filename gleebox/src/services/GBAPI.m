@@ -7,6 +7,7 @@
 //
 
 #import "GBAPI.h"
+#import "GBUserService.h"
 #import "ASIFormDataRequest.h"
 
 @implementation GBAPI
@@ -52,6 +53,10 @@
     [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [request setPostValue:obj forKey:key];
     }];
+    
+    if ([GBUserService singleton].user && [GBUserService singleton].user.authToken) {
+        [request setPostValue:[GBUserService singleton].user.authToken forKey:@"token"];
+    }
     
     [request setCompletionBlock:^{
         // Use when fetching text data

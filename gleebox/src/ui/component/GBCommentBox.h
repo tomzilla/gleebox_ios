@@ -15,10 +15,12 @@
 
 @property (nonatomic, weak) id<GBCommentBoxDelegate> delegate;
 - (id)initWithFrame:(CGRect)frame item:(GBItem *)item;
+@property (nonatomic, strong) UITextField *commentField;
 
 @end
 
-@protocol GBCommentBoxDelegate
+@protocol GBCommentBoxDelegate <NSObject, UITextFieldDelegate>
 @optional
 - (void)commentBoxCommentAdded:(NSDictionary *)comment;
+
 @end

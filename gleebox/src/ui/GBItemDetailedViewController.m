@@ -13,13 +13,17 @@
 #import "GBContainerView.h"
 #import "GBCommentBox.h"
 #import "GBUserService.h"
+#define KEYBOARD_OFFSET 217.0
 
-@interface GBItemDetailedViewController () <GBUULImageViewDelegate, GBCommentBoxDelegate>
+@interface GBItemDetailedViewController () <GBUULImageViewDelegate, GBCommentBoxDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) GBItem *item;
 @property (strong, nonatomic) GBContainerView *bottomContainer;
 @property (strong, nonatomic) GBURLImageView *imageView;
 @property (strong, nonatomic) GBCommentBox *commentBox;
+@property (assign, nonatomic) float oldHeight;
+@property (nonatomic, strong) UITextField *actifText;
+
 @end
 
 @implementation GBItemDetailedViewController
@@ -28,7 +32,6 @@
     self = [super init];
     if (self) {
         self.item = item;
- 
         
     }
     return self;
@@ -42,9 +45,23 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    // Register notification when the keyboard will be hide
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self.scrollView addGestureRecognizer:singleTap];
+    
     self.imageView = [GBURLImageView alloc];
     self.imageView.delegate = self;
     self.imageView = [self.imageView initWithFrame:self.scrollView.frame url:self.item.pictures ? [NSString stringWithFormat:@"http://s3.amazonaws.com/gleebox_items/%@", self.item.pictures[0]] : @"http://i.imgur.com/Ikgoj.jpg" noCrop:YES];
@@ -108,6 +125,10 @@
     self.bottomContainer.frame = frame;
 }
 
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {
+    [self.commentBox.commentField resignFirstResponder];
+    // single tap does nothing for now
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -119,4 +140,78 @@
     [self setBottomContainer:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.actifText = textField;
+}
+
+// To be link with your TextField event "Editing Did End"
+//  release current TextField
+- (IBAction)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.actifText = nil;
+}
+
+-(void) keyboardWillShow:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = self.scrollView.frame;
+    
+    // Start animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Reduce size of the Table view
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+        frame.size.height -= keyboardBounds.size.height;
+    else
+        frame.size.height -= keyboardBounds.size.width;
+    
+    // Apply new size of table view
+    self.scrollView.frame = frame;
+    
+    // Scroll the table view to see the TextField just above the keyboard
+    if (self.actifText)
+    {
+        CGRect textFieldRect = [self.scrollView convertRect:self.actifText.bounds fromView:self.actifText];
+        [self.scrollView scrollRectToVisible:textFieldRect animated:NO];
+    }
+    
+    [UIView commitAnimations];
+}
+
+-(void) keyboardWillHide:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = self.scrollView.frame;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Reduce size of the Table view
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+        frame.size.height += keyboardBounds.size.height;
+    else
+        frame.size.height += keyboardBounds.size.width;
+    
+    // Apply new size of table view
+    self.scrollView.frame = frame;
+    
+    [UIView commitAnimations];
+}
+
+
 @end

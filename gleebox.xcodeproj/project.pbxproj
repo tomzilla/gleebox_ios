@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E28CB6E0168E6CAD004783DF /* GBCommentBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E28CB6DF168E6CAD004783DF /* GBCommentBox.m */; };
+		E28CB6E91696B647004783DF /* GBFavButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E28CB6E81696B647004783DF /* GBFavButton.m */; };
 		E29DCD4016818FAE00A6A900 /* GBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29DCD3E16818FAE00A6A900 /* GBLoginViewController.m */; };
 		E29DCD4116818FAE00A6A900 /* GBLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29DCD3F16818FAE00A6A900 /* GBLoginViewController.xib */; };
 		E29DCD451681908B00A6A900 /* facebook-connect-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E29DCD441681908B00A6A900 /* facebook-connect-button.png */; };
@@ -89,6 +90,8 @@
 		E28CB6DE168E6CAD004783DF /* GBCommentBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBCommentBox.h; sourceTree = "<group>"; };
 		E28CB6DF168E6CAD004783DF /* GBCommentBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBCommentBox.m; sourceTree = "<group>"; };
 		E28CB6E2168EC355004783DF /* GBLoginDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBLoginDelegate.h; sourceTree = "<group>"; };
+		E28CB6E71696B647004783DF /* GBFavButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBFavButton.h; sourceTree = "<group>"; };
+		E28CB6E81696B647004783DF /* GBFavButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBFavButton.m; sourceTree = "<group>"; };
 		E29DCD3D16818FAE00A6A900 /* GBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBLoginViewController.h; path = src/GBLoginViewController.h; sourceTree = "<group>"; };
 		E29DCD3E16818FAE00A6A900 /* GBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBLoginViewController.m; path = src/GBLoginViewController.m; sourceTree = "<group>"; };
 		E29DCD3F16818FAE00A6A900 /* GBLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GBLoginViewController.xib; path = src/GBLoginViewController.xib; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				E2D8D6DB168A4B5300EB5BB4 /* GBContainerView.m */,
 				E28CB6DE168E6CAD004783DF /* GBCommentBox.h */,
 				E28CB6DF168E6CAD004783DF /* GBCommentBox.m */,
+				E28CB6E71696B647004783DF /* GBFavButton.h */,
+				E28CB6E81696B647004783DF /* GBFavButton.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				E2D8D6DF168AB30100EB5BB4 /* GBCameraController.m in Sources */,
 				E2D8D6E2168C0C4300EB5BB4 /* GBLocationManager.m in Sources */,
 				E28CB6E0168E6CAD004783DF /* GBCommentBox.m in Sources */,
+				E28CB6E91696B647004783DF /* GBFavButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

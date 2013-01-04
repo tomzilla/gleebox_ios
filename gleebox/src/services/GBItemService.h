@@ -13,6 +13,6 @@
 + (GBItemService *)singleton;
 - (void)getHomeItems:(NSInteger)offset callback:(void (^)(NSArray *))callback;
 - (void)cache:(GBItem *)item;
-- (GBItem *)get:(NSInteger) id;
+- (GBItem *)get:(NSNumber *) id;
 
 @end

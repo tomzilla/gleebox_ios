@@ -14,7 +14,6 @@
 
 @interface GBCommentBox () <UITextFieldDelegate>
 @property (nonatomic, strong) GBItem *item;
-@property (nonatomic, strong) UITextField *commentField;
 @end
 
 @implementation GBCommentBox
@@ -36,8 +35,15 @@
     }
     return self;
 }
-
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self.delegate textFieldDidEndEditing:textField];
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self.delegate textFieldDidBeginEditing:textField];
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
     if (textField == self.commentField) {
         if (textField.text.length > 0) {
         NSMutableDictionary *data = [NSMutableDictionary dictionary];

@@ -8,8 +8,9 @@
 
 #import "GBAPI.h"
 #import "GBUserService.h"
-@interface GBUserService ()
+#import "GBItemService.h"
 
+@interface GBUserService ()
 
 @end
 
@@ -45,6 +46,11 @@ static GBUserService* _instance;
         if ([(id)self.loginDelegate respondsToSelector:@selector(didLogin:)]) {
             [self.loginDelegate didLogin:self.user];
         }
+        NSArray *favsList = (NSArray *)[userData objectForKey:@"favs"];
+        [favsList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSNumber *itemId = [NSNumber numberWithInteger:[obj integerValue]];
+            [self.favs addObject:itemId];
+        }];
     }];
 }
 

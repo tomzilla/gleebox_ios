@@ -11,8 +11,8 @@
 @interface GBItem : NSObject
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSArray *pictures;
-@property (nonatomic, assign) NSUInteger id;
-
+@property (nonatomic, strong) NSNumber *id;
+@property (nonatomic, assign) BOOL fav;
 - (id)initWithData:(NSDictionary *)data;
 
 @end
